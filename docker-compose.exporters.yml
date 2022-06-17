@@ -6,9 +6,9 @@ services:
     image: prom/node-exporter:v1.3.0
     container_name: nodeexporter
     volumes:
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /:/rootfs:ro
+      - /trs/proc:/host/proc:ro
+      - /trs/sys:/host/sys:ro
+      - /trs:/rootfs:ro
     command:
       - '--path.procfs=/host/proc'
       - '--path.rootfs=/rootfs'
@@ -26,11 +26,11 @@ services:
     devices:
       - /dev/kmsg:/dev/kmsg
     volumes:
-      - /:/rootfs:ro
-      - /var/run:/var/run:ro
-      - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
-      - /cgroup:/cgroup:ro
+      - /trs:/rootfs:ro
+      - /trs/var/run:/var/run:ro
+      - /trs/sys:/sys:ro
+      - /trs/var/lib/docker/:/var/lib/docker:ro
+      - /trs/cgroup:/cgroup:ro
     restart: unless-stopped
     network_mode: host
     labels:
